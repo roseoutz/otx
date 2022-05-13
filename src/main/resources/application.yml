@@ -1,0 +1,24 @@
+server:
+  port: 10000
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb: trace
+
+spring:
+  application:
+    name: btaka-user-service
+  redis:
+    host: localhost
+    port: 6379
+  data:
+    mongodb:
+      host: localhost
+      username: firefly
+      password: qkseltqnfdl
+      database: user
+      authentication-database: admin
+
