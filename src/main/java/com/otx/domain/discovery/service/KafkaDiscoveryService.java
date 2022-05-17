@@ -1,5 +1,6 @@
 package com.otx.domain.discovery.service;
 
+import com.otx.domain.discovery.constant.KafkaConstants;
 import com.otx.domain.discovery.dto.MessageDiscoveryResult;
 import com.otx.domain.discovery.dto.DiscoveryRequest;
 import com.otx.domain.discovery.dto.ServiceInfo;
@@ -8,6 +9,7 @@ import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.admin.ListTopicsOptions;
 import org.apache.kafka.clients.admin.TopicListing;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
+@Service
 public class KafkaDiscoveryService implements DiscoveryService {
 
     private final int CONNECTION_MAX_IDLE_MS = 10000;
@@ -75,9 +78,9 @@ public class KafkaDiscoveryService implements DiscoveryService {
     }
     private Map<String, Object> getKafkaProperties(DiscoveryRequest discoveryRequest) {
         return Map.of(
-                "bootstrap.servers", discoveryRequest.getHost(),
-                "connection.max.idle.ms", CONNECTION_MAX_IDLE_MS,
-                "request.timeout.ms", REQUEST_TIMEOUT_MS
+                KafkaConstants.KAFKA_HOST, discoveryRequest.getHost(),
+                KafkaConstants.KAFKA_CONNECTION_IDLE_TIME, CONNECTION_MAX_IDLE_MS,
+                KafkaConstants.KAFKA_REQUEST_TIME_OUT, REQUEST_TIMEOUT_MS
                 );
     }
 

@@ -1,5 +1,9 @@
 package com.otx.kafka;
 
+import com.otx.domain.discovery.dto.DiscoveryRequest;
+import com.otx.domain.discovery.dto.MessageDiscoveryResult;
+import com.otx.domain.discovery.service.DiscoveryService;
+import com.otx.domain.discovery.service.KafkaDiscoveryService;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.KafkaAdminClient;
 import org.apache.kafka.clients.admin.ListTopicsOptions;
@@ -39,5 +43,14 @@ public class KafkaDiscoveryTest {
         } catch (InterruptedException | ExecutionException e) {
             logger.error(e.getMessage());
         }
+    }
+
+    @Test
+    public void discoveryTest() {
+        DiscoveryService discoveryService = new KafkaDiscoveryService();
+
+        MessageDiscoveryResult result = discoveryService.discoveryService(DiscoveryRequest.builder().host("localhost:9092").timeout(1000).build());
+
+        logger.info("resut : {}", result);
     }
 }

@@ -10,7 +10,7 @@ logging:
 
 spring:
   application:
-    name: btaka-user-service
+    name: otx
   redis:
     host: localhost
     port: 6379
