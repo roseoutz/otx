@@ -61,7 +61,7 @@ public class KafkaDiscoveryService implements DiscoveryService {
                     .builder()
                     .host(discoveryRequest.getHost())
                     .isAlive(false)
-                    .error(e)
+                    .error(e.getMessage())
                     .build();
         }
     }

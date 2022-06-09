@@ -12,7 +12,7 @@ public class ServiceInfo {
 
     private final String host;
     private final boolean isAlive;
-    private final Throwable error;
+    private final String error;
     private final Collection<Topic> topics;
 
     private ServiceInfo(Builder builder) {
@@ -22,7 +22,7 @@ public class ServiceInfo {
         this.topics = Collections.unmodifiableCollection(builder.topics);
     }
 
-    private ServiceInfo(String host, boolean isAlive, Throwable throwable, Collection<Topic> topics) {
+    private ServiceInfo(String host, boolean isAlive, String throwable, Collection<Topic> topics) {
         this.host = host;
         this.isAlive = isAlive;
         this.error = throwable;
@@ -36,7 +36,7 @@ public class ServiceInfo {
     public static class Builder {
         private String host;
         private boolean isAlive;
-        private Throwable error;
+        private String error;
         private Collection<Topic> topics = new ArrayList<>();
 
         public Builder host(String host) {
@@ -49,7 +49,7 @@ public class ServiceInfo {
             return this;
         }
 
-        public Builder error(Throwable error) {
+        public Builder error(String error) {
             this.error = error;
             return this;
         }

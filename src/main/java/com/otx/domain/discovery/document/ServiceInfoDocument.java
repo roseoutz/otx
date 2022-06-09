@@ -1,19 +1,22 @@
 package com.otx.domain.discovery.document;
 
-import com.otx.domain.discovery.dto.Topic;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Collection;
 
-@Document("message_service_info_detail")
+@Data
+@AllArgsConstructor
+@Document("ms_info")
 public class ServiceInfoDocument {
 
     @Id
     private String oid;
-    private String serviceInfoOid;
+    private String type;
     private String host;
     private boolean isAlive;
     private String error;
-    private Collection<Topic> topics;
+    private long lastConnectionTime;
+
 }
